@@ -15,8 +15,8 @@ export default function App() {
   // }
 
   return (
-    <View className="flex-1 items-center bg-white w-[100%] px-10">
-      <View className="flex-1 mt-20  ">
+    <View className="flex-1 items-center bg-slate-800 w-[100%] px-10">
+      <View className="flex-1 mt-20 w-[370px] ">
         <Title />
         <Input />
         <Button />
