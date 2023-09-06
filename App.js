@@ -11,25 +11,10 @@ import Edit from "./src/screen/Edit";
 
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// import { createDrawerNavigator } from "@react-navigation/drawer";
 
 const Stack = createNativeStackNavigator();
-// const Drawer = createDrawerNavigator;
 
-// export function Root({ route }) {
-//   return (
-//     <Drawer.Navigator>
-//       <Drawer.Screen name="Memo" component={Home} />
-//       <Drawer.Screen
-//         name="Edit"
-//         component={Edit}
-//         initialParams={route.params}
-//       />
-//     </Drawer.Navigator>
-//   );
-// }
-
-export default function App() {
+export default function App({ route }) {
   return (
     <NavigationContainer>
       <Stack.Navigator>

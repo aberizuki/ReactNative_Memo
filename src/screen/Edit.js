@@ -11,6 +11,8 @@ import { useState, useEffect } from "react";
 import Title from "../components/Title";
 import EditInput from "../components/Edit Input";
 
-export default function Edit() {
-  return <EditInput />;
+export default function Edit({ route }) {
+  // console.log(route);
+  const { id } = route.params;
+  return <EditInput idu={id} />;
 }

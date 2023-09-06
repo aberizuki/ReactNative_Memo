@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Button from "./Button";
 
-export default function Input() {
+export default function Input({ handleGetList }) {
   const [formList, setFormList] = useState({
     notes: "",
   });
@@ -15,8 +15,8 @@ export default function Input() {
       data: formList,
     })
       .then((res) => {
-        Keyboard.dismiss();
         console.log("Item added: ", res.data);
+        handleGetList();
       })
       .catch((err) => console.log("err: ", err))
       // .then(() => window.location.reload(false))

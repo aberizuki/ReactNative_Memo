@@ -9,25 +9,10 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { getList } from "../service/Service";
 
-export default function List(route) {
-  const [dataList, setDataList] = useState([]);
+export default function List({ dataList, getList }) {
   const navigation = useNavigation();
-
-  const getList = (handleGetList) => {
-    axios
-      .get(`http://192.168.100.22:5000/api/v1/todos`)
-      .then((res) => {
-        setDataList(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
-
-  useEffect(() => {
-    getList();
-  }, []);
 
   const confirmDelete = (id) => {
     axios
@@ -52,14 +37,15 @@ export default function List(route) {
         <FlatList
           data={dataList}
           renderItem={({ item }) => {
+            console.log(item);
             return (
               <View className="flex bg-slate-400 py-4 px-5 rounded mt-2 w-full drop-shadow-xl shadow-xl">
-                <Text className="font-bold pb-3 justify-start text-[16px]">
+                <Text className=" pb-3 justify-start text-[16px]">
                   {item.notes}
                 </Text>
                 <View className="flex flex-row space-x-[10px] justify-end">
                   <Pressable
-                    onPress={() => navigation.navigate("Edit", { item })}
+                    onPress={() => navigation.navigate("Edit", { id: item.id })}
                     className="flex flex-row bg-white p-1 rounded justify-center w-[50px] active:bg-slate-700"
                   >
                     <Text className="font-bold">Edit</Text>
