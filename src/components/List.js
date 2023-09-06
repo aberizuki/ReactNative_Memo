@@ -15,6 +15,15 @@ export default function List() {
       });
   }, []);
 
+  const confirmDelete = (id) => {
+    axios
+      .delete(`http://192.168.100.22:5000/api/v1/todos/${id}`)
+      .then((res) => {
+        console.log("Item deleted: ", res.data);
+      })
+      .catch((err) => console.log("err: ", err));
+  };
+
   return (
     <View className="mt-10 w-full h-[520px]">
       <Text className="font-bold mb-2 text-white">Memo List :</Text>
@@ -31,7 +40,10 @@ export default function List() {
                   <Pressable className="flex flex-row bg-white p-1 rounded justify-center w-[50px] active:bg-slate-700">
                     <Text className="font-bold">Edit</Text>
                   </Pressable>
-                  <Pressable className="flex flex-row bg-red-400 p-1 rounded justify-center w-[50px] active:bg-slate-700">
+                  <Pressable
+                    onPress={confirmDelete(item.id)}
+                    className="flex flex-row bg-red-400 p-1 rounded justify-center w-[50px] active:bg-slate-700"
+                  >
                     <Text className="font-bold">Delete</Text>
                   </Pressable>
                 </View>

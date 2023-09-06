@@ -19,7 +19,7 @@ export default function App() {
       <View className="flex-1 mt-20 w-[370px] ">
         <Title />
         <Input />
-        <Button />
+        {/* <Button /> */}
         <List />
       </View>
       <StatusBar style="auto" />
