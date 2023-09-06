@@ -12,30 +12,37 @@ import Title from "../components/Title";
 import { useNavigation } from "@react-navigation/native";
 import { ToastAndroid } from "react-native";
 
-export default function EditInput({ idu }) {
+export default function EditInput({ idu, getList }) {
   const navigation = useNavigation();
-
+  const [dataId, setDataId] = useState([]);
   const [editNotes, setEditNotes] = useState({
     notes: "",
   });
 
-  const getIdu = () => {
-    axios
-      .get(`http://192.168.100.22:5000/api/v1/todos/${idu}`)
-      .then((res) => {
-        setEditNotes(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
+  // const getId = (id) => {
+  //   axios
+  //     .get(`http://192.168.100.22:5000/api/v1/todos/${id}`)
+  //     .then((res) => {
+  //       setDataId(res.data.data);
+  //       // console.log(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.message);
+  //     });
+  // };
 
-  const handleUpdate = (getList) => {
+  // useEffect(() => {
+  //   getId();
+  // }, []);
+
+  const handleUpdate = () => {
     axios
       .patch(`http://192.168.100.22:5000/api/v1/todos/${idu}`, editNotes, {})
       .then(() => {
         navigation.navigate("Memo");
+        // getList();
       })
+
       .then((res) => {
         ToastAndroid.show("Edit Success", ToastAndroid.SHORT);
       })

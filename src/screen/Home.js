@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <View className="flex-1 items-center bg-slate-800 w-[100%] px-10">
-      <View className="flex-1 mt-[60px] w-[370px] ">
+      <View className="flex-1 mt-[20px] w-[370px] ">
         <Title />
 
         <Input handleGetList={getList} />

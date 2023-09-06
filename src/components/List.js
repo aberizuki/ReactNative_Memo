@@ -37,7 +37,7 @@ export default function List({ dataList, getList }) {
         <FlatList
           data={dataList}
           renderItem={({ item }) => {
-            console.log(item);
+            // console.log(item);
             return (
               <View className="flex bg-slate-400 py-4 px-5 rounded mt-2 w-full drop-shadow-xl shadow-xl">
                 <Text className=" pb-3 justify-start text-[16px]">
@@ -45,7 +45,12 @@ export default function List({ dataList, getList }) {
                 </Text>
                 <View className="flex flex-row space-x-[10px] justify-end">
                   <Pressable
-                    onPress={() => navigation.navigate("Edit", { id: item.id })}
+                    onPress={() =>
+                      navigation.navigate("Edit", {
+                        id: item.id,
+                        getList: getList(),
+                      })
+                    }
                     className="flex flex-row bg-white p-1 rounded justify-center w-[50px] active:bg-slate-700"
                   >
                     <Text className="font-bold">Edit</Text>

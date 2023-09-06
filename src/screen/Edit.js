@@ -13,6 +13,6 @@ import EditInput from "../components/Edit Input";
 
 export default function Edit({ route }) {
   // console.log(route);
-  const { id } = route.params;
-  return <EditInput idu={id} />;
+  const { id, getList } = route.params;
+  return <EditInput idu={id} getList={getList} />;
 }
