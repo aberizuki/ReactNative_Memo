@@ -15,6 +15,7 @@ export default function Input() {
       data: formList,
     })
       .then((res) => {
+        Keyboard.dismiss();
         console.log("Item added: ", res.data);
       })
       .catch((err) => console.log("err: ", err))

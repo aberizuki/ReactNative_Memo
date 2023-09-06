@@ -8,9 +8,11 @@ import {
 } from "react-native";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
-export default function List() {
+export default function List(route) {
   const [dataList, setDataList] = useState([]);
+  const navigation = useNavigation();
 
   const getList = (handleGetList) => {
     axios
@@ -56,7 +58,10 @@ export default function List() {
                   {item.notes}
                 </Text>
                 <View className="flex flex-row space-x-[10px] justify-end">
-                  <Pressable className="flex flex-row bg-white p-1 rounded justify-center w-[50px] active:bg-slate-700">
+                  <Pressable
+                    onPress={() => navigation.navigate("Edit", { item })}
+                    className="flex flex-row bg-white p-1 rounded justify-center w-[50px] active:bg-slate-700"
+                  >
                     <Text className="font-bold">Edit</Text>
                   </Pressable>
                   <Pressable
