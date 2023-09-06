@@ -5,6 +5,7 @@ import Title from "./src/components/Title";
 import Input from "./src/components/Input";
 import Button from "./src/components/Button";
 import List from "./src/components/List";
+import ModalPop from "./src/components/Modal";
 
 export default function App() {
   // const { height } = useWindowDimensions();
@@ -18,6 +19,7 @@ export default function App() {
     <View className="flex-1 items-center bg-slate-800 w-[100%] px-10">
       <View className="flex-1 mt-20 w-[370px] ">
         <Title />
+        <ModalPop />
         <Input />
         {/* <Button /> */}
         <List />

@@ -1,10 +1,18 @@
-import { View, Text, Pressable, FlatList, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  FlatList,
+  ScrollView,
+  ToastAndroid,
+} from "react-native";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function List() {
   const [dataList, setDataList] = useState([]);
-  useEffect(() => {
+
+  const getList = (handleGetList) => {
     axios
       .get(`http://192.168.100.22:5000/api/v1/todos`)
       .then((res) => {
@@ -13,6 +21,10 @@ export default function List() {
       .catch((err) => {
         console.log(err.message);
       });
+  };
+
+  useEffect(() => {
+    getList();
   }, []);
 
   const confirmDelete = (id) => {
@@ -20,8 +32,15 @@ export default function List() {
       .delete(`http://192.168.100.22:5000/api/v1/todos/${id}`)
       .then((res) => {
         console.log("Item deleted: ", res.data);
+        getList();
       })
-      .catch((err) => console.log("err: ", err));
+      .catch((err) => console.log("err: ", err))
+      .then(() => {
+        ToastAndroid.show("Successfully deleted", ToastAndroid.SHORT);
+      })
+      .catch(() => {
+        ToastAndroid.show("Delete failed.", ToastAndroid.SHORT);
+      });
   };
 
   return (
@@ -41,7 +60,7 @@ export default function List() {
                     <Text className="font-bold">Edit</Text>
                   </Pressable>
                   <Pressable
-                    onPress={confirmDelete(item.id)}
+                    onPress={() => confirmDelete(item.id)}
                     className="flex flex-row bg-red-400 p-1 rounded justify-center w-[50px] active:bg-slate-700"
                   >
                     <Text className="font-bold">Delete</Text>

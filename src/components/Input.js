@@ -1,4 +1,4 @@
-import { Text, View, TextInput } from "react-native";
+import { ToastAndroid, View, TextInput } from "react-native";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Button from "./Button";
@@ -13,14 +13,18 @@ export default function Input() {
       url: "http://192.168.100.22:5000/api/v1/todos",
       method: "post",
       data: formList,
-    });
-    // .then(() => window.location.reload(false))
-    // .then(() => {
-    //   ToastAndroid.show("Successfully added", ToastAndroid.SHORT);
-    // })
-    // .catch(() => {
-    //   ToastAndroid.show("Save failed.", ToastAndroid.SHORT);
-    // });
+    })
+      .then((res) => {
+        console.log("Item added: ", res.data);
+      })
+      .catch((err) => console.log("err: ", err))
+      // .then(() => window.location.reload(false))
+      .then(() => {
+        ToastAndroid.show("Successfully added", ToastAndroid.SHORT);
+      })
+      .catch(() => {
+        ToastAndroid.show("Save failed.", ToastAndroid.SHORT);
+      });
   };
 
   return (
@@ -33,6 +37,7 @@ export default function Input() {
         ></TextInput>
       </View>
       <Button handleAddList={handleAddList} />
+      {/* <List /> */}
     </View>
   );
 }
