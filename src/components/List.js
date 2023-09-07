@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { getList } from "../service/Service";
+// import { getList } from "../service/Service";
 
 export default function List({ dataList, getList }) {
   const navigation = useNavigation();
